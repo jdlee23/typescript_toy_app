@@ -26,17 +26,23 @@ class LoginController {
     `);
   }
 
-  // @post('/login')
-  // @bodyValidator('email', 'password')
-  // @use(logger)
-  // postLogin(req: Request, res: Response): void {
-  //   const { email, password } = req.body;
+  @post('/login')
+  @bodyValidator('email', 'password')
+  @use(logger)
+  postLogin(req: Request, res: Response): void {
+    const { email, password } = req.body;
 
-  //   if (email === 'abc' && password === 'abc') {
-  //     req.session = { loggedIn: true };
-  //     res.redirect('/');
-  //   } else {
-  //     res.send('Invalid email or password');
-  //   }
-  // }
+    if (email === 'qwe' && password === 'qwe') {
+      req.session = { loggedIn: true };
+      res.redirect('/');
+    } else {
+      res.send('Invalid email or password');
+    }
+  }
+
+  @get('/logout')
+  getLogout(req: Request, res: Response) {
+    req.session = undefined;
+    res.redirect('/auth/login');
+  }
 }
